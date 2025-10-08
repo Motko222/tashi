@@ -8,6 +8,4 @@ cd $path
 nano env
 source $path/env
 
-cd /root
-[ -d $WORKDIR ] && rm $WORKDIR
-git clone $GIT
+/bin/bash -c "$(curl -fsSL https://depin.tashi.network/install.sh)" -

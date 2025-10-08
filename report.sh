@@ -24,8 +24,8 @@ cat >$json << EOF
          "owner":"$OWNER"
   },
   "fields": {
-        "network":"$NETWORK",
-        "chain":"$CHAIN",
+        "network":"testnet",
+        "chain":"solana-dev",
         "status":"$status",
         "message":"$message",
         "version":"$version",

@@ -1,5 +1,4 @@
 ID=1
-WORKDIR=
 CONTAINER=tashi-depin-worker
 GIT=
 NETWORK=testnet

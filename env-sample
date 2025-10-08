@@ -1,6 +1,6 @@
 ID=1
 WORKDIR=
-CONTAINER=
+CONTAINER=tashi-depin-worker
 GIT=
 NETWORK=testnet
 CHAIN=solana-dev

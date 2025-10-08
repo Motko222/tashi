@@ -1,5 +1,2 @@
 ID=1
 CONTAINER=tashi-depin-worker
-GIT=
-NETWORK=testnet
-CHAIN=solana-dev

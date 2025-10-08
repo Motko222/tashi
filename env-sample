@@ -3,4 +3,4 @@ WORKDIR=
 CONTAINER=
 GIT=
 NETWORK=testnet
-CHAIN=testnet
+CHAIN=solana-dev

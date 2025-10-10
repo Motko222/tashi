@@ -10,9 +10,7 @@ version=$()
 docker_status=$(docker inspect $CONTAINER | jq -r .[].State.Status)
 
 bond=$(docker logs $CONTAINER | grep "resource node successfully bonded" | tail -1 | awk '{print $1}' | sed 's/\x1B\[[0-9;]*[A-Za-z]//g')
-
 diff=$(( $(date +%s) - $(date -d "$bond" +%s) ))
-
 if [ $diff -lt 3600 ]; then
   ago="$(( diff / 60 ))m ago"
 elif [ $diff -lt 86400 ]; then

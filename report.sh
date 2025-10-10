@@ -14,11 +14,11 @@ bond=$(docker logs $CONTAINER | grep "resource node successfully bonded" | tail 
 diff=$(( $(date +%s) - $(date -d "$bond" +%s) ))
 
 if [ $diff -lt 3600 ]; then
-  ago="$(( diff / 60 )) minutes ago"
+  ago="$(( diff / 60 ))m ago"
 elif [ $diff -lt 86400 ]; then
-  ago="$(( diff / 3600 )) hours ago"
+  ago="$(( diff / 3600 ))h ago"
 else
-  ago="$(( diff / 86400 )) days ago"
+  ago="$(( diff / 86400 ))d ago"
 fi
 
 status="ok"

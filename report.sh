@@ -9,6 +9,18 @@ source $path/env
 version=$()
 docker_status=$(docker inspect $CONTAINER | jq -r .[].State.Status)
 
+bond=$(docker logs $CONTAINER | grep "resource node successfully bonded" | tail -1 | awk '{print $1}')
+
+diff=$(( $(date +%s) - $(date -d "$bond" +%s) ))
+
+if [ $diff -lt 3600 ]; then
+  ago="$(( diff / 60 )) minutes ago"
+elif [ $diff -lt 86400 ]; then
+  ago="$(( diff / 3600 )) hours ago"
+else
+  ago="$(( diff / 86400 )) days ago"
+fi
+
 status="ok"
 [ $errors -gt 100 ] && status="warning" && message="too many errors ($errors/h)"
 [ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)"
@@ -31,7 +43,7 @@ cat >$json << EOF
         "version":"$version",
         "height":"$height",
         "errors":"$errors",
-        "m1":"$m1",
+        "m1":"bond=$ago",
         "m2":"$m2",
         "m3":"$m3",
         "url":"$url",

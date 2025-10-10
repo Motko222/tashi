@@ -11,7 +11,8 @@ docker_status=$(docker inspect $CONTAINER | jq -r .[].State.Status)
 
 bond=$(docker logs $CONTAINER | grep "resource node successfully bonded" | tail -1 | awk '{print $1}' | sed 's/\x1B\[[0-9;]*[A-Za-z]//g')
 diff=$(( $(date +%s) - $(date -d "$bond" +%s) ))
-if [ $diff -lt 3600 ]; then ago="$(( diff / 60 ))m ago";
+if [ $diff -lt 60 ]; then ago="now";
+elif [ $diff -lt 3600 ]; then ago="$(( diff / 60 ))m ago";
 elif [ $diff -lt 86400 ]; then ago="$(( diff / 3600 ))h ago";
 else ago="$(( diff / 86400 ))d ago";
 fi

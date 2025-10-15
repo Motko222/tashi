@@ -17,7 +17,7 @@ elif [ $diff -lt 86400 ]; then ago="$(( diff / 3600 ))h ago";
 else ago="$(( diff / 86400 ))d ago";
 fi
 
-status="ok"
+status="ok";message="bonded $ago"
 [ $errors -gt 100 ] && status="warning" && message="too many errors ($errors/h)"
 [ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)"
 

@@ -11,6 +11,7 @@ docker rm $CONTAINER
 
 #run without interactions
 wget https://depin.tashi.network/install.sh -O script
+chmod +x script
 
 sed -i '/prompt/ { /choice/ c\
 choice=y

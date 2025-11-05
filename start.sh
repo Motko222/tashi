@@ -6,4 +6,12 @@ source $path/env
 docker stop $CONTAINER
 docker rm $CONTAINER
 
-/bin/bash -c "$(curl -fsSL https://depin.tashi.network/install.sh)" -
+#/bin/bash -c "$(curl -fsSL https://depin.tashi.network/install.sh)" -
+
+wget https://depin.tashi.network/install.sh script
+
+sed -i '/prompt/ { /choice/ c\
+choice=y
+}' script
+
+./script

@@ -19,9 +19,9 @@ else ago="$(( diff / 86400 ))d";
 fi
 
 status="ok";message="$ago ago bonded"
-[ $diff -gt 86400 ] && status="warning" && message="not bonded for $ago, restarting" && ./start.sh
+[ $diff -gt 86400 ] && status="warning" && message="not bonded for $ago, restarted" && ./start.sh
 [ $errors -gt 100 ] && status="warning" && message="too many errors ($errors/h)"
-[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)" && ./start.sh
+[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status), restarted" && ./start.sh
 
 cat >$json << EOF
 {

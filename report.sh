@@ -21,7 +21,7 @@ fi
 status="ok";message="$ago ago bonded"
 [ $diff -gt 86400 ] && status="warning" && message="not bonded for $ago, restarting" && ./start.sh
 [ $errors -gt 100 ] && status="warning" && message="too many errors ($errors/h)"
-[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)"
+[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)" && ./start.sh
 
 cat >$json << EOF
 {

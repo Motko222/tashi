@@ -1,4 +1,4 @@
-tarte#!/bin/bash
+#!/bin/bash
 
 path=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd)
 folder=$(echo $path | awk -F/ '{print $NF}')
@@ -19,9 +19,9 @@ else ago="$(( diff / 86400 ))d";
 fi
 
 status="ok";message="$ago ago bonded"
-[ $diff -gt 86400 ] && status="warning" && message="not bonded for $ago, restarted" && ./start.sh
+[ $diff -gt 86400 ] && status="warning" && message="not bonded for $ago"
 [ $errors -gt 100 ] && status="warning" && message="too many errors ($errors/h)"
-[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status), restarted" && ./start.sh
+[ "$docker_status" != "running" ] && status="error" && message="docker not running ($docker_status)" && docker start $CONTAINER 2>/dev/null
 
 cat >$json << EOF
 {

@@ -9,6 +9,7 @@ cd $path
 
 version=$()
 docker_status=$(docker inspect $CONTAINER | jq -r .[].State.Status)
+errors=$(docker logs $CONTAINER --since 1h 2>&1 | grep -c -E "rror|ERR")
 
 bond=$(docker logs $CONTAINER | grep "resource node successfully bonded" | tail -1 | awk '{print $1}' | sed 's/\x1B\[[0-9;]*[A-Za-z]//g')
 diff=$(( $(date +%s) - $(date -d "$bond" +%s) ))

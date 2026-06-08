@@ -7,7 +7,7 @@ source /root/.bash_profile
 source $path/env
 cd $path
 
-version=$()
+version=$(docker inspect $CONTAINER 2>/dev/null | jq -r '.[].Image' | cut -c8-14)
 docker_status=$(docker inspect $CONTAINER | jq -r .[].State.Status)
 errors=$(docker logs $CONTAINER --since 1h 2>&1 | grep -c -E "rror|ERR")
 
